@@ -1,0 +1,23 @@
+/* * * * * * * * * * * * * * 		
+#                          *
+#  @Author  ASHISH CHAUHAN  *
+#                          *
+# * * * * * * * * * * * * */
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long int
+int main()
+{
+	ll q;
+	cin>>q;
+	while(q--)
+	{
+        ll n,m;
+        cin>>n;
+        m=(n*(n-1))+1;
+        cout<<m<<endl;;
+		
+	}
+    return 0;
+	
+}
