@@ -1,0 +1,45 @@
+n=int(input())
+k=list(input().split())
+l=[]
+for i in k:
+    p=max(i)
+    z=int(p)*11
+    q=min(i)
+    a=int(q)*7
+    s=a+z
+    c=str(s)
+    
+    if len(str(c))<=2:
+        l.append(c)
+    else:
+        l.append(c[1:])
+even=[]
+odd=[]
+for j in range(0,len(l)):
+    
+    if j%2 == 0:
+        
+        even.append(int(l[j])//10)
+    else:
+        odd.append(int(l[j])//10)
+
+zx=[]
+f=0
+g=0
+for a1 in even:
+    if even.index(a1) == f:
+        zx.append(even.count(a1))
+        
+    f+=1
+for b2 in odd:
+    if odd.index(b2) == g:
+        zx.append(odd.count(b2))
+    g+=1
+
+pair=0
+for v in zx:
+    if v == 2:
+        pair+=1
+    elif v > 2:
+        pair+=2
+print(pair)
