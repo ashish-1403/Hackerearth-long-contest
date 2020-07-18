@@ -1,0 +1,7 @@
+t=int(input())
+for i in range(0,t):
+    n=int(input())
+    p=(n**2)+n+2
+    
+    print(p//2)
+    
