@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ff first
+#define ss second
+#define MAX 10000003
+#define ll long long int
+
+int prime[MAX];
+
+ll power(ll x, ll y, ll z)
+{
+	ll res = 1;
+	x = x % z;
+	if (x == 0)
+		return 0;
+	while (y > 0)
+	{
+		if (y & 1)
+		res = (res*x) % z;
+		y = y>>1;
+		x = (x*x) % z;
+	}
+	return res;
+}
+
+void sieve()
+{
+prime[0] = prime[1] = 1;
+for (int i = 2; i < MAX; i++) 
+{
+	if (prime[i] == 0) 
+	{
+		for (int j = i * 2; j < MAX; j += i)
+		{
+			if (prime[j] == 0) 
+			{
+				prime[j] = i;
+			}
+		}
+		prime[i] = i;
+	}
+}
+}
+
+ll FCK(const ll* ar, ll n,ll m)
+{
+	unordered_map<long, long> max_map;
+	for (int i = 0; i < n; i++) 
+	{
+		long num = ar[i];
+		unordered_map<long, long> temp;
+		while (num > 1) 
+		{
+			long factor = prime[num];
+			temp[factor]++;
+			num /= factor;
+		}
+		for (auto it : temp)
+		{
+			max_map[it.first] = max(max_map[it.first], it.second);
+		}
+	}
+	ll ans = 1;
+	for (auto it : max_map)
+	{
+		ans = (ans * power(it.ff, it.ss, m)) % m;
+	}
+
+	return ans;
+}
+
+int main()
+{
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+sieve();
+ll t;
+cin>>t;
+while(t--)
+{
+	long long n,m,k,i,o;
+	cin>>n>>m>>k;
+	ll arr[n+1];
+	for(i=0;i<n;i++)
+	{
+	cin>>arr[i];
+	}
+	o=FCK(arr,n,m);
+	o=power(o,k,m);
+	cout<<o%m<<endl;
+}
+return 0;
+}
